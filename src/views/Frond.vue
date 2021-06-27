@@ -35,17 +35,145 @@
       </div>
     </div>
   </nav>
+
+  <div class="container-fluid p-0">
+      <img class="img-fluid" src="../assets/images/header.jpg"  alt="" />
+  </div>
+
+  <div class="container my-5">
+    <h3 class="text-center mb-0 title">what we give you</h3>
+    <div class="short-hr bg-primary mx-auto mt-5 mb-6"></div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card border-0 p-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6 position-relative px-2">
+                <img
+                  class="img-fluid position-absolute card-icon"
+                  width="64"
+                  src="../assets/icons/roaster.svg"
+                  alt="roaster icon"
+                />
+              </div>
+              <div class="col-6 d-flex flex-column border-start">
+                <ul class="justify-content-center mb-0 ps-3 pe-0">
+                  <li class="h5 fw-bold">新鮮烘焙</li>
+                  <li>Fresh Roast</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card border-0 p-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6 position-relative px-2">
+                <img
+                  class="img-fluid position-absolute card-icon"
+                  width="64"
+                  src="../assets/icons/coffee-bean.svg"
+                  alt="beans icon"
+                />
+              </div>
+              <div class="col-6 d-flex flex-column border-start">
+                <ul class="justify-content-center mb-0 ps-3 pe-0">
+                  <li class="h5 fw-bold">精品咖啡</li>
+                  <li>Coffee bean</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card border-0 p-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6 position-relative px-2">
+                <img
+                  class="img-fluid position-absolute card-icon"
+                  width="64"
+                  src="../assets/icons/coffee-pot.svg"
+                  alt="pot icon"
+                />
+              </div>
+              <div class="col-6 d-flex flex-column border-start">
+                <ul class="justify-content-center mb-0 ps-3 pe-0">
+                  <li class="h5 fw-bold">專業手沖</li>
+                  <li>Drip over</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+         <div class="card border-0 p-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6 position-relative px-2">
+                <img
+                  class="img-fluid position-absolute card-icon"
+                  width="64"
+                  src="../assets/icons/latte.svg"
+                  alt="latte icon"
+                />
+              </div>
+              <div class="col-6 d-flex flex-column border-start">
+                <ul class="justify-content-center mb-0 ps-3 pe-0">
+                  <li class="h5 fw-bold">義式咖啡</li>
+                  <li>espresso</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
+.title{
+  font-family: 'Caveat', cursive;
+  font-weight: 600;
+  font-size: 3rem;
+}
+
+li{
+  list-style: none;
+}
+
 .logo {
   font-family: "Ubuntu", sans-serif;
   font-weight: 500;
   font-size: 1.5rem;
 }
 
-.cartItem{
+.cartItem {
   right: 8px;
-  top:-6px;
+  top: -6px;
+}
+
+.card-icon {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.short-hr{
+  width:10vh;
+  height:2px;
 }
 </style>
+
+<script>
+export default {
+  data() {
+    return {};
+  },
+  mounted() {},
+};
+</script>

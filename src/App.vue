@@ -9,7 +9,7 @@
 
 <style>
 body{
-  background-color: #f7fdff;
+  background-color: #edfbff;
   font-family: "Microsoft JhengHei", Arial;
   color:#105670;
 }
