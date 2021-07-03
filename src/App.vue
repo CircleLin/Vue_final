@@ -36,53 +36,6 @@
         </div>
       </div>
     </div>
-    <transition>
- <div class="menu-content position-absolute py-3 bg-white" v-if="active"
-  @mouseenter="active = true"
-  @mouseleave="active=false">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-4">
-                   <h4 class="fw-bold">咖啡豆</h4>
-                   <hr />
-                   <a href="#" class="text-primary fw-bold h6 mb-4">
-                     非洲<br />
-                     Africa
-                   </a>
-                   <a href="#" class="text-primary fw-bold h6 mb-4">
-                     亞洲<br />
-                     Asia
-                   </a>
-                   <a href="#" class="text-primary fw-bold h6 mb-4">
-                     中南美洲<br />
-                     Centrol America
-                   </a>
-                </div>
-                 <div class="col-md-4">
-                   <h4 class="fw-bold">沖煮器材</h4>
-                   <hr />
-                   <a href="#" class="text-primary fw-bold h6 mb-4">
-                     手沖<br />
-                     Pour Over
-                   </a>
-                   <a href="#" class="text-primary fw-bold h6 mb-4">
-                     虹吸式咖啡壺<br />
-                     Syphon
-                   </a>
-                   <a href="#" class="text-primary fw-bold h6 mb-4">
-                     義式<br />
-                     espresso
-                   </a>
-                     <a href="#" class="text-primary fw-bold h6 mb-4">
-                     冰滴/冰釀<br />
-                     Iced coffee
-                   </a>
-                </div>
-              </div>
-            </div>
-          </div>
-    </transition>
-
   </nav>
   <router-view></router-view>
   <footer class="bg-light py-4">
@@ -106,35 +59,6 @@ body{
   right: 16px;
   top: 2px;
 }
-
-.menu-content{
-  width:100%;
-  top:56px;
-  left:0;
-  z-index: 1;
-  opacity:0.9;
-}
-
-.menu-content a{
-  display: block;
-  text-decoration: none;
-}
-
-.v-enter-from,
-.v-leave-to{
-  opacity:0;
-}
-
-.v-enter-to,
-.v-leave-from{
-  opacity:1;
-}
-
-.v-enter-active,
-.v-leave-active{
-  transition:opacity .2s;
-}
-
 </style>
 
 <script>
