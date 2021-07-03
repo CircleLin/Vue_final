@@ -18,7 +18,7 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-link px-4 py-3 fw-bold" aria-current="page" href="#">關於我們</a>
-          <router-link to="products" class="nav-link px-4  py-3 fw-bold"
+          <router-link to="/products" class="nav-link px-4  py-3 fw-bold"
           @mouseenter="active = true"
           >買咖啡</router-link>
           <a class="nav-link px-4  py-3 fw-bold" href="#">門市地點</a>
@@ -88,6 +88,7 @@
   <footer class="bg-light py-4">
       <p class="text-center mb-0">© 2021  |  Circle's Coffee</p>
   </footer>
+  <loading></loading>
 </template>
 
 <style lang="scss">
@@ -97,7 +98,6 @@
 <style>
 
 body{
-  background-color: #edfbff;
   font-family: "Microsoft JhengHei", Arial;
   color:#105670;
 }
