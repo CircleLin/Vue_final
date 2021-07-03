@@ -12,21 +12,21 @@
           <ul class="d-flex justify-content-center category ps-0 ">
             <li>
               <a href="#" class="category-item"
-              :class="[activeCategory === 0 ? 'active' : '']"
-              @click.prevent="activeCategory = 0"
+              :class="[activeCategory === '' ? 'active' : '']"
+              @click.prevent="activeCategory = ''"
               >全部商品</a>
             </li>
-            <li v-for="(category, i) in categories" :key="category">
+            <li v-for="category in categories" :key="category">
               <a href="#" class="category-item"
-              :class="[ activeCategory === i+1 ? 'active' : '']"
-              @click.prevent="activeCategory = i+1"
+              :class="[ activeCategory ===  category ? 'active' : '']"
+              @click.prevent="activeCategory = category"
               >{{category}}</a>
             </li>
           </ul>
 
     <div class="row mb-3 justify-content-between">
       <div class="col-3">
-        <p class="pb-0">共 {{products.length}} 樣商品</p>
+        <p class="pb-0">共 {{filterProduct.length}} 樣商品</p>
       </div>
        <div class="col-3">
             <select name="filter" id="filter" class="form-select text-muted">
@@ -40,7 +40,7 @@
 
     <!-- product-list -->
     <div class="row">
-      <div class="col-md-3 mb-4" v-for="product in products" :key="product.id">
+      <div class="col-md-3 mb-4" v-for="product in filterProduct" :key="product.id">
         <card :product="product"></card>
       </div>
     </div>
@@ -103,7 +103,7 @@ export default {
     return {
       products: [],
       categories: [],
-      activeCategory: 0,
+      activeCategory: '',
     };
   },
   components: {
@@ -132,6 +132,11 @@ export default {
           this.categories.push(_item.category);
         }
       });
+    },
+  },
+  computed: {
+    filterProduct() {
+      return this.products.filter((item) => item.category.match(this.activeCategory));
     },
   },
   mounted() {
