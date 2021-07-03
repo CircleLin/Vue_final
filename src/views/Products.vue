@@ -10,14 +10,23 @@
     </div>
 
           <ul class="d-flex justify-content-center category ps-0 ">
-            <li v-for="category in categories" :key="category">
-              <a href="#" class="category-item">{{category}}</a>
+            <li>
+              <a href="#" class="category-item"
+              :class="[activeCategory === 0 ? 'active' : '']"
+              @click.prevent="activeCategory = 0"
+              >全部商品</a>
+            </li>
+            <li v-for="(category, i) in categories" :key="category">
+              <a href="#" class="category-item"
+              :class="[ activeCategory === i+1 ? 'active' : '']"
+              @click.prevent="activeCategory = i+1"
+              >{{category}}</a>
             </li>
           </ul>
 
     <div class="row mb-3 justify-content-between">
       <div class="col-3">
-        <p class="pb-0">共 3 樣商品</p>
+        <p class="pb-0">共 {{products.length}} 樣商品</p>
       </div>
        <div class="col-3">
             <select name="filter" id="filter" class="form-select text-muted">
@@ -57,10 +66,6 @@ a {
   color:#105670;
 }
 
-.category-item:hover{
-  color:white;
-}
-
 .category-item::before{
   content:'';
   position: absolute;
@@ -75,26 +80,14 @@ a {
   opacity:0;
 }
 
-.category-item::after{
-  content:'';
-  position: absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:#105670;
-  transition:all .2s;
-  transform:scale(0);
-  z-index:-1;
-}
-
-.category-item:hover::after{
-  transform:scale(1);
-}
-
 .category-item:hover::before{
   transform: scaleY(1.2);
   opacity:1;
+}
+
+.category-item.active{
+ background:#105670;
+ color:white;
 }
 
 .menu a:hover {
@@ -110,6 +103,7 @@ export default {
     return {
       products: [],
       categories: [],
+      activeCategory: 0,
     };
   },
   components: {
