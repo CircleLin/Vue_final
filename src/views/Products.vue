@@ -26,21 +26,20 @@
 
     <div class="row mb-3 justify-content-between">
       <div class="col-3">
-        <p class="pb-0">共 {{filterProduct.length}} 樣商品</p>
+        <p class="pb-0">共 {{filterProducts.length}} 樣商品</p>
       </div>
        <div class="col-3">
-            <select name="filter" id="filter" class="form-select text-muted">
-              <option value="0" selected disabled>Sort by</option>
-              <option value="1">價格:高 to 低</option>
-              <option value="2">價格:低 to 高</option>
-              <option value="3">熱銷商品</option>
+            <select name="filter" id="filter" class="form-select text-muted" v-model="sortBy">
+              <option value="0">Sort by</option>
+              <option value="1">價格：高 -> 低</option>
+              <option value="2">價格：低 -> 高</option>
             </select>
         </div>
     </div>
 
     <!-- product-list -->
     <div class="row">
-      <div class="col-md-3 mb-4" v-for="product in filterProduct" :key="product.id">
+      <div class="col-md-3 mb-4" v-for="product in filterProducts" :key="product.id">
         <card :product="product"></card>
       </div>
     </div>
@@ -104,6 +103,7 @@ export default {
       products: [],
       categories: [],
       activeCategory: '',
+      sortBy: 0,
     };
   },
   components: {
@@ -134,9 +134,26 @@ export default {
       });
     },
   },
+  watch: {
+    sortBy() {
+      if (this.sortBy === '1') {
+        this.filterProducts = this.filterProducts.sort((a, b) => b.price - a.price);
+      } else if (this.sortBy === '2') {
+        this.filterProducts = this.filterProducts.sort((a, b) => a.price - b.price);
+      }
+    },
+  },
   computed: {
-    filterProduct() {
-      return this.products.filter((item) => item.category.match(this.activeCategory));
+    filterProducts() {
+      return this.products.filter(
+        (item) => item.category.match(this.activeCategory),
+      );
+      // if (this.sortBy === '1') {
+      //   sortedProducts = productByCategory.sort((a, b) => b.price - a.price);
+      // } else if (this.sortBy === '2') {
+      //   sortedProducts = productByCategory.sort((a, b) => a.price - b.price);
+      // }
+      // return sortedProducts;
     },
   },
   mounted() {
