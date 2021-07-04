@@ -95,8 +95,6 @@ a {
 </style>
 
 <script>
-import card from './ProductCard.vue';
-
 export default {
   data() {
     return {
@@ -105,9 +103,6 @@ export default {
       activeCategory: '',
       sortBy: 0,
     };
-  },
-  components: {
-    card,
   },
   methods: {
     getProducts() {

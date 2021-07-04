@@ -13,7 +13,7 @@
     "core-js": "^3.6.5",
     "mitt": "^2.1.0",
     "sweetalert2": "^11.0.18",
-    "swiper": "^6.7.1",
+    "swiper": "^6.7.5",
     "vue": "^3.0.0",
     "vue-awesome-swiper": "^4.1.1",
     "vue-axios": "^3.2.4",
