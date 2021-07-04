@@ -148,12 +148,6 @@ export default {
       return this.products.filter(
         (item) => item.category.match(this.activeCategory),
       );
-      // if (this.sortBy === '1') {
-      //   sortedProducts = productByCategory.sort((a, b) => b.price - a.price);
-      // } else if (this.sortBy === '2') {
-      //   sortedProducts = productByCategory.sort((a, b) => a.price - b.price);
-      // }
-      // return sortedProducts;
     },
   },
   mounted() {

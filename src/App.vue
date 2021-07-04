@@ -27,10 +27,10 @@
               <img width="32" height="32" src="../src/assets/icons/cart-check.svg" alt="cart" />
             </a>
             <div
-              class="fw-bold cartItem position-absolute bg-danger px-1
+              class="fw-bold cartItem position-absolute bg-danger px-2
             rounded-pill text-white"
             >
-              0
+              {{cartCount}}
             </div>
           </div>
         </div>
@@ -56,7 +56,7 @@ body{
 }
 
 .cartItem {
-  right: 16px;
+  right: 10px;
   top: 2px;
 }
 </style>
@@ -66,7 +66,26 @@ export default {
   data() {
     return {
       active: false,
+      cartCount: 0,
     };
+  },
+  methods: {
+    getCart() {
+      this.$http
+        .get(`${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/cart`)
+        .then((res) => {
+          this.cartCount = res.data.data.carts.length;
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    },
+  },
+  created() {
+    this.emitter.on('updateCart', () => {
+      this.getCart();
+    });
+    this.getCart();
   },
 };
 </script>
