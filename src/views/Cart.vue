@@ -1,6 +1,15 @@
 <template>
+
   <div class="container py-5">
-    <div class="row gx-md-6">
+    <div class="row"  v-if="carts.length === 0">
+      <h5 class="fw-bold mb-5">購物車 Shopping Cart</h5>
+        <h1 class="fw-bold text-primary text-center">購物車沒有東西唷！</h1>
+        <h5 class="text-center my-5">快到商品頁面看看喜歡的商品吧。</h5>
+        <router-link to="/products"
+        class="btn btn-primary btn-lg d-block w-25 mx-auto">繼續購物</router-link>
+    </div>
+    <div v-else>
+ <div class="row">
       <h5 class="fw-bold mb-5">購物車 Shopping Cart</h5>
       <div class="col-md-8">
         <div class="row border-top border-bottom py-5" v-for="(cart, i) in carts" :key="cart.id">
@@ -47,21 +56,26 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4 position-sticky sticky-top">
-        <h5 class="fw-bold mb-4">購物車總計</h5>
+      <div class="col-md-4 border-top">
+        <div class="sticky-top ps-md-4">
+        <h5 class="fw-bold mb-md-4 mt-md-5">購物車總計</h5>
         <h6 class="mb-3">小計：TWD {{total}} 元</h6>
         <h6 class="mb-3">運費：TWD {{shippingCost}} 元</h6>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="輸入免運序號">
+          <input type="text" class="form-control" placeholder="輸入優惠券">
           <button class="btn btn-outline-primary" type="button" id="button-addon2">輸入</button>
         </div>
         <hr>
         <h5 class="mb-3">總計：TWD {{total + shippingCost}} 元</h5>
-        <button class="btn btn-primary d-block w-100 btn-lg mb-2">前往結帳 >></button>
+        <router-link to="/order" class="btn btn-primary d-block w-100 btn-lg mb-2">
+        確認訂單</router-link>
         <router-link to="/products"
         class="btn btn-outline-secondary d-block w-100">繼續購物</router-link>
+        </div>
       </div>
     </div>
+    </div>
+
   </div>
 </template>
 
