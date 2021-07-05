@@ -23,9 +23,9 @@
           >買咖啡</router-link>
           <a class="nav-link px-4  py-3 fw-bold" href="#">門市地點</a>
           <div class="d-flex position-relative px-4 py-2">
-            <a calss="nav-link" href="#">
+            <router-link calss="nav-link" to="/cart">
               <img width="32" height="32" src="../src/assets/icons/cart-check.svg" alt="cart" />
-            </a>
+            </router-link>
             <div
               class="fw-bold cartItem position-absolute bg-danger px-2
             rounded-pill text-white"
@@ -67,6 +67,7 @@ export default {
     return {
       active: false,
       cartCount: 0,
+      cartProducts: [],
     };
   },
   methods: {
@@ -74,6 +75,7 @@ export default {
       this.$http
         .get(`${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/cart`)
         .then((res) => {
+          this.carts = res.data.data.carts;
           this.cartCount = res.data.data.carts.length;
         })
         .catch((err) => {
