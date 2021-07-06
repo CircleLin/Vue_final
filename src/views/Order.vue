@@ -198,7 +198,6 @@ export default {
         .post(`${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/order`, userData)
         .then((res) => {
           const { success, orderId } = res.data;
-          console.log(res.data);
           if (success) {
             this.$refs.form.resetForm();
             this.emitter.emit('updateCart');

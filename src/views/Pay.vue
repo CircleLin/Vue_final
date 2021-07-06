@@ -102,24 +102,21 @@ export default {
   },
   methods: {
     getOrder() {
-      const loader = this.$loading.show();
+      console.log(this.$route);
       this.$http
         .get(
-          `${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/order/-Mdt4NsMtmoccdKqTfE6`,
+          `${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/order/${this.$route.id}`,
         )
         .then((res) => {
-          console.log(res.data);
           const { success, order } = res.data;
           if (success) {
+            console.log(res.data);
             this.order = order;
             this.products = Object.values(order.products);
           }
         })
         .catch((err) => {
           console.log(err.message);
-        })
-        .finally(() => {
-          loader.hide();
         });
     },
     pay() {
@@ -143,7 +140,11 @@ export default {
     },
   },
   created() {
-    this.getOrder();
+    const loader = this.$loading.show();
+    setTimeout(() => {
+      this.getOrder();
+    }, 3000);
+    loader.hide();
   },
 };
 </script>

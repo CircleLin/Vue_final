@@ -21,12 +21,12 @@
         <p class="mb-4 text-danger fw-bold">
           {{ product.unit }} / TWD {{ $currency(product.price) }}
         </p>
-        <h5 class="fw-bold">風味描述：</h5>
+        <h5 class="fw-bold" v-if="product.category === '咖啡豆'">風味描述：</h5>
         <p class="mb-4">{{ product.flavor_desc }}</p>
-        <h5 class="fw-bold">烘焙度：</h5>
+        <h5 class="fw-bold" v-if="product.category === '咖啡豆'">烘焙度：</h5>
         <p class="mb-4">{{ product.roast }}</p>
-        <h5 class="fw-bold">研磨方式</h5>
-        <select class="form-select mb-4" v-model="selectedGrind">
+        <h5 class="fw-bold" v-if="product.category === '咖啡豆'">研磨方式</h5>
+        <select class="form-select mb-4" v-model="selectedGrind" v-if="product.category === '咖啡豆'">
           <option :value="option.value" v-for="option in grindOption" :key="option.value"
         >{{option.text}}</option>
         </select>
