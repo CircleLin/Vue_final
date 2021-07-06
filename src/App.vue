@@ -1,6 +1,6 @@
 <template>
-    <div class="py-1 bg-primary"></div>
-
+<div class="wrapper">
+<div class="py-1 bg-primary"></div>
   <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm position-relative py-0">
     <div class="container">
       <router-link class="navbar-brand logo" to="/">Circle's Coffee</router-link>
@@ -38,6 +38,7 @@
     </div>
   </nav>
   <router-view></router-view>
+</div>
   <footer class="bg-light py-4">
       <p class="text-center mb-0">© 2021  |  Circle's Coffee</p>
   </footer>
@@ -53,6 +54,10 @@
 body{
   font-family: "Microsoft JhengHei", Arial;
   color:#105670;
+}
+
+.wrapper{
+  min-height: calc(100vh - 24px);
 }
 
 .cartItem {
