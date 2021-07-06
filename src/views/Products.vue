@@ -3,7 +3,9 @@
     <div class="row mb-3">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">首頁</a></li>
+          <li class="breadcrumb-item">
+            <router-link to="/home">首頁</router-link>
+          </li>
           <li class="breadcrumb-item active" aria-current="page">買咖啡</li>
         </ol>
       </nav>

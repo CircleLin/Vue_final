@@ -4,7 +4,7 @@
     <div class="row my-4">
         <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-0">
-          <li class="breadcrumb-item"><router-link to="/">首頁</router-link></li>
+          <li class="breadcrumb-item"><router-link to="/home">首頁</router-link></li>
           <li class="breadcrumb-item"><router-link to="/products">買咖啡</router-link></li>
           <li class="breadcrumb-item active" aria-current="page">{{product.title}}</li>
         </ol>
