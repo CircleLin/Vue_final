@@ -1,7 +1,9 @@
 <template>
   <div class="container py-5">
     <div class="row">
-      <h5 class="fw-bold mb-5">確認訂單 Check Out</h5>
+      <h5 class="fw-bold">確認訂單 Check Out</h5>
+      <router-link to="/cart" class="h6 mb-5 text-primary" style="text-decoration:none;">
+      <img src="../assets/icons/arrow-left-short.svg" width="20" alt=""> 回到購物車</router-link>
       <div class="col-md-5 bg-secondary px-4 py-3">
         <div class="row mb-1 justify-content-between">
           <div class="col-2">
@@ -32,7 +34,7 @@
       </div>
       <div class="col-md-7 px-4 py-3">
         <!-- 結帳表單 -->
-        <h6 class="fw-bold">1. 收件人資訊</h6>
+        <h6 class="fw-bold">填寫收件人資訊</h6>
         <Form v-slot="{ errors }" @submit="onSubmit" ref="form">
           <label for="name" class="form-label mt-3"><span class="text-danger">* </span>姓名</label>
     <Field
@@ -176,7 +178,6 @@ export default {
       return true;
     },
     checkAgree(value) {
-      console.log('agree', value);
       return !value ? '請閱讀並同意網站購物條款' : true;
     },
     onSubmit() {
@@ -196,11 +197,12 @@ export default {
       this.$http
         .post(`${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/order`, userData)
         .then((res) => {
-          const { success, message } = res.data;
+          const { success, orderId } = res.data;
+          console.log(res.data);
           if (success) {
-            this.$swal(message);
             this.$refs.form.resetForm();
             this.emitter.emit('updateCart');
+            this.$router.push({ path: `/pay/${orderId}` });
           }
         })
         .catch((err) => {

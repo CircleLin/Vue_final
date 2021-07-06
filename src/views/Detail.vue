@@ -32,7 +32,7 @@
           <div class="col-4">
             <div class="input-group mb-3">
               <button
-                class="btn btn-outline-secondary"
+                class="btn btn-outline-primary"
                 type="button"
                 @click="qty == 0 ? 0 : (qty -= 1)"
               >
@@ -46,7 +46,7 @@
                 aria-describedby="button-addon1"
                 v-model="qty"
               />
-              <button class="btn btn-outline-secondary" type="button" @click="qty += 1">
+              <button class="btn btn-outline-primary" type="button" @click="qty += 1">
                 +
               </button>
             </div>

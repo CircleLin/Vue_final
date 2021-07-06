@@ -22,6 +22,10 @@ const routes = [
     path: '/order',
     component: () => import('../views/Order.vue'),
   },
+  {
+    path: '/pay/:id',
+    component: () => import('../views/Pay.vue'),
+  },
 ];
 
 const router = createRouter({

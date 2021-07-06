@@ -27,7 +27,7 @@
             <div class="row h-100 flex-column justify-content-center">
               <div class="input-group mb-3">
               <button
-                class="btn btn-outline-secondary"
+                class="btn btn-outline-primary"
                 type="button"
                 @click="calcQty(cart.id, cart.product_id, cart.qty, i, 'minus')"
               >
@@ -41,7 +41,7 @@
                 aria-describedby="button-addon1"
                 v-model="cart.qty"
               />
-              <button class="btn btn-outline-secondary" type="button"
+              <button class="btn btn-outline-primary" type="button"
               @click="calcQty(cart.id, cart.product_id, cart.qty, i, 'add')">
                 +
               </button>
@@ -70,7 +70,7 @@
         <router-link to="/order" class="btn btn-primary d-block w-100 btn-lg mb-2">
         確認訂單</router-link>
         <router-link to="/products"
-        class="btn btn-outline-secondary d-block w-100">繼續購物</router-link>
+        class="btn btn-outline-primary d-block w-100">繼續購物</router-link>
         </div>
       </div>
     </div>
