@@ -35,7 +35,9 @@ const app = createApp(App);
 app.component('card', card);
 app.use(router);
 app.use(VueAxios, axios);
-app.use(VueLoading);
+app.use(VueLoading, {
+  opacity: 1, color: '#105670', loader: 'dots', width: '64',
+});
 app.use(VueSweetalert2);
 app.component('Form', Form);
 app.component('Field', Field);
