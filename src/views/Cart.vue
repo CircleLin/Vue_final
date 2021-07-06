@@ -20,7 +20,9 @@
             <div class="row h-100 flex-column justify-content-evenly">
              <div class="text-center">{{cart.product.title}}</div>
              <div class="text-center">{{cart.product.roast}}</div>
-             <div class="text-center">{{cart.product.unit }} / TWD {{cart.product.price}}</div>
+             <div class="text-center">
+               {{cart.product.unit }} / TWD {{ $currency(cart.product.price)}}
+              </div>
             </div>
           </div>
           <div class="col-3 px-4">
@@ -46,7 +48,7 @@
                 +
               </button>
             </div>
-            <h6 class="text-end">小計 {{cart.product.price * cart.qty}} 元</h6>
+            <h6 class="text-end">小計 {{ $currency(cart.product.price * cart.qty)}} 元</h6>
             </div>
           </div>
           <div class="col-1 d-flex justify-content-center align-items-center">
@@ -59,14 +61,14 @@
       <div class="col-md-4 border-top">
         <div class="sticky-top ps-md-4">
         <h5 class="fw-bold mb-md-4 mt-md-5">購物車總計</h5>
-        <h6 class="mb-3">小計：TWD {{total}} 元</h6>
-        <h6 class="mb-3">運費：TWD {{shippingCost}} 元</h6>
+        <h6 class="mb-3">小計：TWD {{ $currency(total)}} 元</h6>
+        <h6 class="mb-3">運費：TWD {{$currency(shippingCost)}} 元</h6>
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="輸入優惠券">
           <button class="btn btn-outline-primary" type="button" id="button-addon2">輸入</button>
         </div>
         <hr>
-        <h5 class="mb-3">總計：TWD {{total + shippingCost}} 元</h5>
+        <h5 class="mb-3">總計：TWD {{ $currency(total + shippingCost) }} 元</h5>
         <router-link to="/order" class="btn btn-primary d-block w-100 btn-lg mb-2">
         確認訂單</router-link>
         <router-link to="/products"

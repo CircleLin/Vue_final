@@ -21,13 +21,13 @@
               </div>
               <div class="mb-2">{{cart.product.title}}</div>
               <div class="mb-2">{{cart.product.roast}}</div>
-              <div>{{cart.product.unit }} / TWD {{cart.product.price}}</div>
+              <div>{{cart.product.unit }} / TWD {{ $currency(cart.product.price)}}</div>
             </div>
           </div>
           <div class="col-6 py-3">
             <div class="row h-100 d-flex flex-column justify-content-between">
               <div class="text-end">數量：{{cart.qty}}</div>
-              <div class="text-end">TWD {{cart.qty * cart.product.price}} 元</div>
+              <div class="text-end">TWD {{ $currency(cart.qty * cart.product.price)}} 元</div>
             </div>
           </div>
         </div>

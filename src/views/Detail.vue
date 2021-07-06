@@ -18,7 +18,9 @@
       <div class="col-md-6 p-3">
         <h4 class="fw-bold mb-4">{{ product.title }}</h4>
         <hr />
-        <p class="mb-4 text-danger fw-bold">{{ product.unit }} / TWD {{ product.price }}</p>
+        <p class="mb-4 text-danger fw-bold">
+          {{ product.unit }} / TWD {{ $currency(product.price) }}
+        </p>
         <h5 class="fw-bold">風味描述：</h5>
         <p class="mb-4">{{ product.flavor_desc }}</p>
         <h5 class="fw-bold">烘焙度：</h5>
@@ -56,7 +58,7 @@
           </div>
         </div>
         <hr />
-        <div class="float-end fw-bold h5">TWD {{ totalPrice }} 元</div>
+        <div class="float-end fw-bold h5">TWD {{ $currency(totalPrice) }} 元</div>
       </div>
     </div>
   </div>
