@@ -36,7 +36,7 @@ app.component('card', card);
 app.use(router);
 app.use(VueAxios, axios);
 app.use(VueLoading, {
-  opacity: 1, color: '#105670', loader: 'dots', width: '64',
+  opacity: 1, color: '#105670', loader: 'dots', width: 64,
 });
 app.use(VueSweetalert2);
 app.component('Form', Form);

@@ -27,8 +27,12 @@ const routes = [
         component: () => import('../views/Order.vue'),
       },
       {
-        path: 'pay/:id',
+        path: 'pay/:order_Id',
         component: () => import('../views/Pay.vue'),
+      },
+      {
+        path: 'complete',
+        component: () => import('../views/Complete.vue'),
       },
     ],
   },

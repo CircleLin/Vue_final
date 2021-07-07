@@ -3,7 +3,6 @@
     <div class="container py-5">
       <h5 class="fw-bold mb-5">結帳付款 Pay</h5>
       <!-- product -->
-
       <h6 class="fw-bold">訂購明細</h6>
       <div class="row justify-content-center bg-secondary py-3 mb-5">
         <div class="col-md-8">
@@ -24,7 +23,7 @@
                   </div>
                 </td>
                 <td class="align-middle">{{ product.product.title }}</td>
-                <td class="align-middle">{{ product.product.unit }}</td>
+                <td class="align-middle">{{ product.qty }}</td>
                 <td class="align-middle">TWD {{ $currency(product.product.price) }}</td>
               </tr>
             </tbody>
@@ -33,6 +32,7 @@
         </div>
       </div>
 
+      <!-- 收件資訊 -->
       <h6 class="fw-bold">收件資訊</h6>
       <div class="row justify-content-center bg-secondary py-3">
         <div class="col-md-8">
@@ -40,19 +40,19 @@
             <tbody>
                <tr>
               <td class="py-3">收件人姓名</td>
-              <td class="py-3">{{order.user.name}}</td>
+              <td class="py-3" v-if="order.user">{{order.user.name}}</td>
             </tr>
             <tr>
               <td class="py-3">Email</td>
-              <td class="py-3">{{order.user.email}}</td>
+              <td class="py-3" v-if="order.user">{{order.user.email}}</td>
             </tr>
             <tr>
               <td class="py-3">電話</td>
-              <td class="py-3">{{order.user.tel}}</td>
+              <td class="py-3" v-if="order.user">{{order.user.tel}}</td>
             </tr>
             <tr>
               <td class="py-3">地址</td>
-              <td class="py-3">{{order.user.address}}</td>
+              <td class="py-3" v-if="order.user">{{order.user.address}}</td>
             </tr>
              <tr>
               <td class="py-3">付款狀態</td>
@@ -67,12 +67,9 @@
           </table>
           <div>
             <button type="button"
-            v-if="!order.is_paid"
             class="btn btn-primary btn-lg d-block w-100 mt-4"
             @click="pay"
             >進行付款</button>
-            <router-link v-else class="btn btn-primary w-100 d-block btn-lg"
-            to="/products">繼續購物</router-link>
           </div>
         </div>
       </div>
@@ -96,21 +93,21 @@
 export default {
   data() {
     return {
+      orderId: '',
       order: {},
       products: [],
     };
   },
   methods: {
     getOrder() {
-      console.log(this.$route);
+      this.orderId = this.$route.params.order_Id;
       this.$http
         .get(
-          `${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/order/${this.$route.id}`,
+          `${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/order/${this.orderId}`,
         )
         .then((res) => {
           const { success, order } = res.data;
           if (success) {
-            console.log(res.data);
             this.order = order;
             this.products = Object.values(order.products);
           }
@@ -123,12 +120,12 @@ export default {
       const loader = this.$loading.show();
       this.$http
         .post(
-          `${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/pay/${this.$route.orderId}`,
+          `${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`,
         )
         .then((res) => {
           const { success } = res.data;
           if (success) {
-            this.order.is_paid = true;
+            this.$router.push('/complete');
           }
         })
         .catch((err) => {
@@ -139,12 +136,8 @@ export default {
         });
     },
   },
-  created() {
-    const loader = this.$loading.show();
-    setTimeout(() => {
-      this.getOrder();
-    }, 3000);
-    loader.hide();
+  mounted() {
+    this.getOrder();
   },
 };
 </script>
