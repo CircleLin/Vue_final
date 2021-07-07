@@ -98,12 +98,6 @@
         </tr>
       </tbody>
     </table>
-     <delmodal
-     ref="deleteModal"
-     :temp-product="tempProduct"
-     @del-data="deleteProduct">
-     </delmodal>
-
      <pages :pagination="pagination" @get-paged-data="getProducts"></pages>
   </div>
 </template>
@@ -111,7 +105,6 @@
 sc
 <script>
 import pages from '@/components/Pages.vue';
-import delmodal from '@/components/DeleteProductModal.vue';
 
 export default {
   data() {
@@ -129,7 +122,6 @@ export default {
   },
   components: {
     pages,
-    delmodal,
   },
   methods: {
     getProducts(page = 1) {
