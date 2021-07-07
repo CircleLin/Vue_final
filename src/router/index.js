@@ -50,6 +50,10 @@ const routes = [
         component: () => import('../views/admin/DashboardOrders.vue'),
       },
       {
+        path: 'coupon',
+        component: () => import('../views/admin/DashboardCoupon.vue'),
+      },
+      {
         path: 'addproduct',
         component: () => import('../views/admin/Addproduct.vue'),
       },

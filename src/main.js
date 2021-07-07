@@ -13,7 +13,7 @@ import { required, email, min } from '@vee-validate/rules';
 import { localize, setLocale } from '@vee-validate/i18n';
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
 import card from './views/ProductCard.vue';
-import currency from './script/util';
+import { currency, date } from './script/util';
 import App from './App.vue';
 import router from './router';
 
@@ -43,5 +43,8 @@ app.component('Form', Form);
 app.component('Field', Field);
 app.component('ErrorMessage', ErrorMessage);
 app.config.globalProperties.emitter = emitter;
-app.config.globalProperties.$currency = currency;
+app.config.globalProperties.$filters = {
+  currency,
+  date,
+};
 app.mount('#app');

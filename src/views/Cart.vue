@@ -32,7 +32,7 @@
                 <div class="text-center">{{ cart.product.roast }}</div>
                 <div class="text-center">
                   {{ cart.product.unit }} / TWD
-                  {{ $currency(cart.product.price) }}
+                  {{ $filters.currency(cart.product.price) }}
                 </div>
               </div>
             </div>
@@ -67,7 +67,7 @@
                   </button>
                 </div>
                 <h6 class="text-end">
-                  小計 {{ $currency(cart.product.price * cart.qty) }} 元
+                  小計 {{ $filters.currency(cart.product.price * cart.qty) }} 元
                 </h6>
               </div>
             </div>
@@ -85,8 +85,8 @@
         <div class="col-md-4 border-top">
           <div class="sticky-top ps-md-4">
             <h5 class="fw-bold mb-md-4 mt-md-5">購物車總計</h5>
-            <h6 class="mb-3">小計：TWD {{ $currency(total) }} 元</h6>
-            <h6 class="mb-3">運費：TWD {{ $currency(shippingCost) }} 元</h6>
+            <h6 class="mb-3">小計：TWD {{ $filters.currency(total) }} 元</h6>
+            <h6 class="mb-3">運費：TWD {{ $filters.currency(shippingCost) }} 元</h6>
             <div class="input-group mb-3">
               <input
                 type="text"
@@ -103,7 +103,7 @@
             </div>
             <hr />
             <h5 class="mb-3">
-              總計：TWD {{ $currency(total + shippingCost) }} 元
+              總計：TWD {{ $filters.currency(total + shippingCost) }} 元
             </h5>
             <router-link
               to="/order"

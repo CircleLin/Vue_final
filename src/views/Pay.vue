@@ -24,11 +24,11 @@
                 </td>
                 <td class="align-middle">{{ product.product.title }}</td>
                 <td class="align-middle">{{ product.qty }}</td>
-                <td class="align-middle">TWD {{ $currency(product.product.price) }}</td>
+                <td class="align-middle">TWD {{ $filters.currency(product.product.price) }}</td>
               </tr>
             </tbody>
           </table>
-          <div class="text-end fw-bold">TWD {{ $currency(order.total) }} 元</div>
+          <div class="text-end fw-bold">TWD {{ $filters.currency(order.total) }} 元</div>
         </div>
       </div>
 
