@@ -36,6 +36,33 @@ const routes = [
       },
     ],
   },
+  {
+    // 後台路由
+    path: '/admin',
+    component: () => import('../views/admin/Dashboard.vue'),
+    children: [
+      {
+        path: 'products',
+        component: () => import('../views/admin/DashboardProducts.vue'),
+      },
+      {
+        path: 'orders',
+        component: () => import('../views/admin/DashboardOrders.vue'),
+      },
+      {
+        path: 'addproduct',
+        component: () => import('../views/admin/Addproduct.vue'),
+      },
+      {
+        path: 'editproduct/:id',
+        component: () => import('../views/admin/EditProduct.vue'),
+      },
+    ],
+  },
+  {
+    path: '/login',
+    component: () => import('../views/admin/Login.vue'),
+  },
 ];
 
 const router = createRouter({
