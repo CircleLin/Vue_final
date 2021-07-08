@@ -15,7 +15,7 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link px-4 py-3 fw-bold" aria-current="page" href="#">關於我們</a>
+          <router-link to="/about" class="nav-link px-4  py-3 fw-bold">關於我們</router-link>
           <router-link to="/products" class="nav-link px-4  py-3 fw-bold">買咖啡</router-link>
           <router-link to="/admin" class="nav-link px-4  py-3 fw-bold">後台管理</router-link>
           <div class="d-flex position-relative px-4 py-2">
