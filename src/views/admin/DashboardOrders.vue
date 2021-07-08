@@ -1,5 +1,4 @@
 <template>
-<Loading :active="isLoading" :z-index="1060"></Loading>
  <div class="container">
   <table class="table mt-4">
     <thead>
@@ -43,7 +42,7 @@
               <button class="btn btn-outline-primary btn-sm"
                      @click="editOrder(item)" >檢視</button>
               <button class="btn btn-outline-danger btn-sm"
-              >刪除</button>
+              @click="showDeleteOrder(item)">刪除</button>
             </div>
           </td>
         </tr>
@@ -54,18 +53,21 @@
  <ordermodal ref="ordermodal"
  :order="tempOrder"
  @update-paid="updatePaid"></ordermodal>
+<delmodal ref="delmodal"
+:order="tempOrder"
+@delete-order="deleteOrder"></delmodal>
  </div>
 </template>
 
 <script>
 import pages from '@/components/Pages.vue';
 import ordermodal from '@/components/OrderModal.vue';
+import delmodal from '@/components/DelOrderModal.vue';
 
 export default {
   data() {
     return {
       orders: [],
-      isLoading: false,
       pagination: {},
       tempOrder: {},
     };
@@ -73,17 +75,17 @@ export default {
   components: {
     pages,
     ordermodal,
+    delmodal,
   },
   methods: {
     getOrders(page = 1) {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       this.$http
         .get(`${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/admin/orders?page=${page}`)
         .then((res) => {
           const { success, orders, pagination } = res.data;
           if (success) {
             this.orders = orders;
-            console.log(this.orders);
             this.pagination = pagination;
           }
         })
@@ -91,11 +93,11 @@ export default {
           console.log(err.message);
         })
         .finally(() => {
-          this.isLoading = false;
+          loader.hide();
         });
     },
     updatePaid(item) {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       const paid = {
         is_paid: item.is_paid,
       };
@@ -106,12 +108,36 @@ export default {
           this.$swal.fire(message);
           this.getOrders();
           this.$refs.ordermodal.hide();
+        })
+        .catch((err) => {
+          console.log(err.message);
+        })
+        .finally(() => {
+          loader.hide();
         });
     },
     editOrder(order) {
       this.tempOrder = { ...order };
-      console.log(this.tempOrder);
       this.$refs.ordermodal.show();
+    },
+    showDeleteOrder(order) {
+      this.tempOrder = { ...order };
+      this.$refs.delmodal.showModal();
+    },
+    deleteOrder(id) {
+      const loader = this.$loading.show();
+      this.$http.delete(`${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/admin/order/${id}`)
+        .then(() => {
+          this.$swal.fire('已刪除訂單');
+          this.getOrders();
+          this.$refs.delmodal.hideModal();
+        })
+        .catch((err) => {
+          console.log(err.message);
+        })
+        .finally(() => {
+          loader.hide();
+        });
     },
   },
   created() {
