@@ -63,13 +63,13 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container my-4">
    <div class="row">
       <h5 class="fw-bold">你可能也會喜歡</h5>
    </div>
    <div class="row">
      <div class="col-md-3" v-for="item in sameProducts" :key="item.id">
-       <card :product="item"></card>
+       <card :product="item" @get-product="getProduct"></card>
      </div>
    </div>
   </div>
@@ -106,20 +106,23 @@ export default {
   methods: {
     getProduct() {
       const loader = this.$loading.show();
-      this.$http
-        .get(
-          `${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/product/${this.$route.params.id}`,
-        )
-        .then((res) => {
-          this.product = res.data.product;
-          this.getSameProducts();
-        })
-        .catch((err) => {
-          console.log(err.message);
-        })
-        .finally(() => {
-          loader.hide();
-        });
+      setTimeout(() => {
+        const url = `${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/product/${this.$route.params.id}`;
+        this.$http
+          .get(
+            url,
+          )
+          .then((res) => {
+            this.product = res.data.product;
+            this.getSameProducts();
+          })
+          .catch((err) => {
+            console.log(err.message);
+          })
+          .finally(() => {
+            loader.hide();
+          });
+      }, 500);
     },
     addCart() {
       if (this.qty > 0) {
@@ -168,6 +171,9 @@ export default {
         .catch((err) => {
           console.log(err.message);
         });
+    },
+    fromCard(id) {
+      console.log(id);
     },
   },
   computed: {

@@ -1,15 +1,14 @@
 <template>
   <div class="card ">
     <div class="card-body p-0 text-center">
-      <router-link :to="`/products/${product.id}`" class="p-img mb-3">
+      <a @click.prevent="goProduct(product.id)" class="p-img mb-3">
         <img :src="product.imageUrl" :alt="product.title" />
         <div class="p-detail"></div>
-      </router-link>
-
+      </a>
       <h5 class="fw-bold mb-3">
-        <router-link :to="`/products/${product.id}`" class="text-primary">{{
-          product.title || ""
-        }}</router-link>
+        <a @click.prevent="goProduct(product.id)" class="text-primary">
+          {{ product.title }}
+        </a>
       </h5>
       <h6 class="mb-3">{{ product.roast || "" }}</h6>
       <h6 class="text-danger fw-bold mb-3">TWD {{ $filters.currency(product.price) }}</h6>
@@ -62,6 +61,7 @@
 a {
   text-decoration: none;
   display: block;
+  cursor: pointer;
 }
 </style>
 
@@ -95,6 +95,10 @@ export default {
         .finally(() => {
           loader.hide();
         });
+    },
+    goProduct(id) {
+      this.$router.push(`/products/${id}`);
+      this.$emit('get-product');
     },
   },
   mounted() {},
