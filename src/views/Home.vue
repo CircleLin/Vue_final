@@ -7,7 +7,7 @@
 <section class="bg-white pb-6">
 <div class="container my-5">
     <h3 class="text-center mb-0 title">what we give you</h3>
-    <div class="short-hr bg-primary mx-auto mt-5 mb-6"></div>
+    <div class="short-hr bg-primary mx-auto my-5"></div>
     <div class="row">
       <div class="col-md-3">
         <div class="card p-3">
@@ -101,21 +101,41 @@
   </div>
 </section>
 
-  <div class="container my-5 px-5">
+  <div class="container-fluid my-5 px-0">
     <h3 class="text-center mb-0 title">New Release</h3>
-    <div class="short-hr bg-primary mx-auto mt-5 mb-3"></div>
-    <div class="row newItem" >
-      <div class="col-md-6 py-6 position-relative">
-        <img class="img-fluid" src="../assets/images/icecoffee.jpg" alt="coffee bag" />
-        <div class="position-absolute newItemTag ps-3 pe-5 py-2">
-          <h3>New Arrival</h3>
+    <div class="short-hr bg-primary mx-auto my-5"></div>
+    <swiper
+    :spaceBetween="30" :centeredSlides="true" :effect="'fade'" :autoplay='{
+  "delay": 5000,
+  "disableOnInteraction": false
+}' :navigation="true" class="mySwiper"
+  >
+    <swiper-slide>
+      <div class="slider-img slider1">
+        <div class="slider-intro float-end">
+          <h3 class="text-primary fw-bold">沁涼冰濃縮</h3>
+          <h5>夏季限定</h5>
         </div>
       </div>
-      <div class="col-md-6 p-6 d-flex flex-column justify-content-center">
-        <h4 class="bg-primary text-white fw-bold ps-3 py-3 mb-6">享受自家沖煮的樂趣</h4>
-        <p class="h5 fw-bold lh-lg">迎風吹來的樹木告知夏天的到來，會想喝一杯來自南太平洋的清爽時令咖啡，這個夏天，何不在家享受一下冰咖啡的清淡口感呢？</p>
+    </swiper-slide>
+    <swiper-slide>
+      <div class="slider-img slider2">
+        <div class="slider-intro">
+          <h3 class="text-primary fw-bold">薄荷莓果冰沙</h3>
+          <h5>清新上市</h5>
+        </div>
       </div>
-    </div>
+    </swiper-slide>
+    <swiper-slide>
+       <div class="slider-img slider3">
+        <div class="slider-intro">
+          <h3 class="text-primary fw-bold">冰可可拿鐵</h3>
+          <h5>黑可可風味</h5>
+        </div>
+      </div>
+    </swiper-slide>
+    ...
+  </swiper>
   </div>
 
   <div class="container my-5 px-5">
@@ -123,7 +143,7 @@
     <div class="short-hr bg-primary mx-auto mt-5 mb-5"></div>
     <div class="row">
       <div class="col-md-6 d-flex flex-column justify-content-center">
-        <ul>
+        <ul class="px-0">
           <li>
             <p class="text-center fw-bold">TEL:(02) 1234-5678</p>
           </li>
@@ -140,7 +160,7 @@
 
       </div>
       <div class="col-md-6 text-center px-6">
-         <img class="img-fluid ps-5" src="https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Y29mZmVlJTIwc2hvcHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+         <img class="img-fluid" src="https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Y29mZmVlJTIwc2hvcHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
       </div>
     </div>
   </div>
@@ -163,19 +183,6 @@
   top:15%;
   left:50%;
   transform:translate(-50%, -50%);
-}
-
-.newItemTag{
-  top:40px;
-  left:30px;
-  background-color: #FDE18D;
-  transform:rotate(-6deg);
-}
-
-.newItemTag h3{
-  right:35px;
-  bottom:35px;
-  font-family: "Caveat", cursive;
 }
 
 .title {
@@ -251,4 +258,58 @@ li {
     transform: translateY(46px);
   }
 }
+
+.slider1{
+  background-image: url('../assets/images/new1.jpg');
+}
+
+.slider-img{
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height:80vh;
+}
+
+.slider2{
+  background-image: url('../assets/images/new2.jpg');
+}
+
+.slider3{
+  background-image: url('../assets/images/new3.jpg');
+}
+
+.slider-intro{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height:100%;
+  width: 30%;
+  background-color: rgb(255, 255, 255, 0.35);
+}
+
+@media (max-width:768px) {
+  .slider-intro{
+    width:50%;
+  }
+}
+
 </style>
+
+<script>
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/swiper.scss';
+import 'swiper/components/navigation/navigation.min.css';
+import 'swiper/components/effect-fade/effect-fade.min.css';
+
+import SwiperCore, { Autoplay, Navigation, EffectFade } from 'swiper/core';
+
+SwiperCore.use([Autoplay, Navigation, EffectFade]);
+
+export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+};
+</script>
