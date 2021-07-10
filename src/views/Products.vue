@@ -1,4 +1,8 @@
 <template>
+<section class="product-banner">
+  <h3 class="text-white fw-bold">所有商品</h3>
+  <h2 class="text-white fw-bold">All Products</h2>
+</section>
   <div class="container py-5">
     <div class="row mb-3">
       <nav aria-label="breadcrumb">
@@ -49,6 +53,24 @@
 </template>
 
 <style scoped>
+
+h2 {
+  font-family: "Caveat", cursive;
+}
+
+.product-banner{
+  background-image: url('../assets/images/product-banner.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .category {
   list-style-type: none;
 }
@@ -97,6 +119,7 @@ a {
 </style>
 
 <script>
+
 export default {
   data() {
     return {
@@ -107,10 +130,10 @@ export default {
     };
   },
   methods: {
-    getProducts() {
+    getProducts(page = 1) {
       const loader = this.$loading.show();
       this.$http
-        .get(`${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/products/all`)
+        .get(`${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/products?page=${page}`)
         .then((res) => {
           const { products } = res.data;
           this.products = products;

@@ -102,7 +102,7 @@
 </section>
 
   <div class="container my-5 px-5">
-    <h3 class="text-center mb-0 title">Hot Product</h3>
+    <h3 class="text-center mb-0 title">New Release</h3>
     <div class="short-hr bg-primary mx-auto mt-5 mb-3"></div>
     <div class="row newItem" >
       <div class="col-md-6 py-6 position-relative">

@@ -1,6 +1,6 @@
 <template>
   <nav aria-label="...">
-    <ul class="pagination">
+    <ul class="pagination mt-5 mb-3">
       <li class="page-item" :class="{ disabled: !pagination.has_pre }">
         <a
           class="page-link"
@@ -26,6 +26,12 @@
     </ul>
   </nav>
 </template>
+
+<style scoped>
+.pagination{
+  justify-content: flex-end;
+}
+</style>
 
 <script>
 export default {

@@ -1,4 +1,8 @@
 <template>
+<section class="about-banner">
+  <h3 class="text-white fw-bold">關於我們</h3>
+  <h2 class="text-white fw-bold">About us</h2>
+</section>
   <div class="container p-5">
     <h3 class="fw-bold mb-4">Concept</h3>
     <hr class="mb-4">
@@ -58,6 +62,18 @@ h2 {
 img {
   width:100%;
   height:auto;
+}
+.about-banner{
+  background-image: url('../assets/images/about-banner.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>
 
