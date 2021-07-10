@@ -12,7 +12,7 @@
       </h5>
       <h6 class="mb-3">{{ product.roast || "" }}</h6>
       <h6 class="text-danger fw-bold mb-3">TWD {{ $filters.currency(product.price) }}</h6>
-      <a href="#" class="d-block py-3 text-center bg-primary text-white fw-bold"
+      <a href="#" class="d-block py-3 text-center bg-primary text-white addCart"
        @click.prevent="addCart(product.id)">加入購物車</a>
     </div>
   </div>
@@ -62,6 +62,10 @@ a {
   text-decoration: none;
   display: block;
   cursor: pointer;
+}
+
+.addCart:hover{
+  font-weight: bold;
 }
 </style>
 

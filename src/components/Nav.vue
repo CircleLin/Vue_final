@@ -1,5 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm position-relative py-0">
+  <div class="py-1 bg-primary"></div>
+  <nav class="navbar navbar-expand-lg navbar-light
+  bg-light shadow-sm py-0">
+
     <div class="container">
       <router-link class="navbar-brand logo" to="/home">Circle's Coffee</router-link>
       <button
