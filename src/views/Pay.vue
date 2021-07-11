@@ -3,16 +3,17 @@
     <div class="container py-5">
       <h5 class="fw-bold mb-5">結帳付款 Pay</h5>
       <!-- product -->
-      <h6 class="fw-bold">訂購明細</h6>
+      <h6 class="fw-bold">訂購明細 (共 {{products.length}} 件)</h6>
       <div class="row justify-content-center bg-secondary py-3 mb-5">
         <div class="col-md-8">
           <table class="table text-center">
             <thead>
               <tr>
                 <th>商品</th>
+                <th>優惠券</th>
                 <th>品名</th>
                 <th>數量</th>
-                <th>售價</th>
+                <th class="text-end">售價</th>
               </tr>
             </thead>
             <tbody>
@@ -22,9 +23,12 @@
                     <img :src="product.product.imageUrl" :alt="product.product.title" />
                   </div>
                 </td>
+                <td class="align-middle">{{product.coupon.title}}</td>
                 <td class="align-middle">{{ product.product.title }}</td>
                 <td class="align-middle">{{ product.qty }}</td>
-                <td class="align-middle">TWD {{ $filters.currency(product.product.price) }}</td>
+                <td class="align-middle text-end px-0">
+                  TWD {{ $filters.currency(product.final_total) }} 元
+                </td>
               </tr>
             </tbody>
           </table>
@@ -106,6 +110,7 @@ export default {
           `${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/order/${this.orderId}`,
         )
         .then((res) => {
+          console.log(res.data);
           const { success, order } = res.data;
           if (success) {
             this.order = order;

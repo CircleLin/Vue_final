@@ -130,10 +130,10 @@ export default {
     };
   },
   methods: {
-    getProducts(page = 1) {
+    getProducts() {
       const loader = this.$loading.show();
       this.$http
-        .get(`${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/products?page=${page}`)
+        .get(`${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/products/all`)
         .then((res) => {
           const { products } = res.data;
           this.products = products;

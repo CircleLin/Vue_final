@@ -86,24 +86,27 @@
           <div class="sticky-top ps-md-4">
             <h5 class="fw-bold mb-md-4 mt-md-5">購物車總計</h5>
             <h6 class="mb-3">小計：TWD {{ $filters.currency(total) }} 元</h6>
-            <h6 class="mb-3">運費：TWD {{ $filters.currency(shippingCost) }} 元</h6>
             <div class="input-group mb-3">
               <input
                 type="text"
                 class="form-control"
-                placeholder="輸入優惠券"
+                v-model="coupon"
+                :disabled="final_total !== total"
               />
               <button
                 class="btn btn-outline-primary"
                 type="button"
                 id="button-addon2"
+                @click="checkCoupon"
+                :disabled="final_total !== total"
               >
                 輸入
               </button>
             </div>
+            <p v-if="final_total !== total" class="text-danger">已使用優惠券</p>
             <hr />
             <h5 class="mb-3">
-              總計：TWD {{ $filters.currency(total + shippingCost) }} 元
+              總計：TWD {{ $filters.currency(final_total) }} 元
             </h5>
             <router-link
               to="/order"
@@ -130,7 +133,9 @@ export default {
   data() {
     return {
       carts: [],
-      shippingCost: 60,
+      total: 0,
+      final_total: 0,
+      coupon: '',
     };
   },
   methods: {
@@ -142,6 +147,7 @@ export default {
         )
         .then((res) => {
           this.carts = res.data.data.carts;
+          this.total = res.data.data.total;
           this.final_total = res.data.data.final_total;
         })
         .catch((err) => {
@@ -193,14 +199,24 @@ export default {
           loader.hide();
         });
     },
-  },
-  computed: {
-    total() {
-      let allPrice = 0;
-      this.carts.forEach((item) => {
-        allPrice += item.product.price * item.qty;
-      });
-      return allPrice;
+    checkCoupon() {
+      const loader = this.$loading.show();
+      const couponData = { code: this.coupon };
+      this.$http.post(`${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/coupon`, { data: couponData })
+        .then((res) => {
+          if (res.data.success) {
+            this.$swal(res.data.message);
+            this.final_total = res.data.data.final_total;
+          } else {
+            this.$swal(res.data.message);
+          }
+        })
+        .catch((err) => {
+          console.log(err.message);
+        })
+        .finally(() => {
+          loader.hide();
+        });
     },
   },
   mounted() {

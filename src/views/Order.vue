@@ -33,6 +33,9 @@
             </div>
           </div>
         </div>
+        <h5 class="text-end mt-3">小計：{{$filters.currency(total)}} 元</h5>
+        <h6 class="text-danger text-end" v-if="final_total !== total">已使用優惠券</h6>
+        <h5 class="text-end">總計：{{$filters.currency(final_total)}} 元</h5>
       </div>
       <div class="col-md-7 px-4 py-3">
         <!-- 結帳表單 -->
@@ -136,6 +139,7 @@ export default {
     return {
       carts: [],
       final_total: 0,
+      total: 0,
       user: {
         email: '',
         name: '',
@@ -154,6 +158,7 @@ export default {
         .get(`${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/cart`)
         .then((res) => {
           this.carts = res.data.data.carts;
+          this.total = res.data.data.total;
           this.final_total = res.data.data.final_total;
         })
         .catch((err) => {
