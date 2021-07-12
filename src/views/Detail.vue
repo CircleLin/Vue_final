@@ -30,7 +30,12 @@
           <option :value="option.value" v-for="option in grindOption" :key="option.value"
         >{{option.text}}</option>
         </select>
-        <div class="row">
+        <h5 class="fw-bold" v-if="product.category !== '咖啡豆'">產品描述：</h5>
+        <p class="mb-4" v-html="product.description"></p>
+        <h5 class="fw-bold" v-if="product.category !== '咖啡豆'">說明內容：</h5>
+        <p class="mb-4">{{product.content}}</p>
+        <p class="fw-bold text-danger" v-if="product.instock == 1">僅剩1組</p>
+        <div class="row" v-if="product.instock !== 0">
           <div class="col-4">
             <div class="input-group mb-3">
               <button
@@ -48,7 +53,8 @@
                 aria-describedby="button-addon1"
                 v-model="qty"
               />
-              <button class="btn btn-outline-primary" type="button" @click="qty += 1">
+              <button class="btn btn-outline-primary"
+              :disabled="qty >= product.instock" type="button" @click="qty += 1">
                 +
               </button>
             </div>
@@ -56,6 +62,9 @@
           <div class="col-8">
             <button class="btn btn-primary w-100 d-block" @click="addCart">加入購物車</button>
           </div>
+        </div>
+        <div class="" v-else>
+          <button class="btn btn-primary w-100 d-block" disabled>售完補貨中</button>
         </div>
         <hr />
         <div class="float-end fw-bold h5">TWD {{ $filters.currency(totalPrice) }} 元</div>
@@ -171,9 +180,6 @@ export default {
         .catch((err) => {
           console.log(err.message);
         });
-    },
-    fromCard(id) {
-      console.log(id);
     },
   },
   computed: {

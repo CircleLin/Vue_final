@@ -34,6 +34,9 @@
                   {{ cart.product.unit }} / TWD
                   {{ $filters.currency(cart.product.price) }}
                 </div>
+                <div class="text-center" v-if="cart.product.category === '咖啡豆'">
+                  研磨方式：{{ $filters.grindText(cart.grindType)}}
+                </div>
               </div>
             </div>
             <div class="col-3 px-4">
@@ -92,6 +95,7 @@
                 class="form-control"
                 v-model="coupon"
                 :disabled="final_total !== total"
+                placeholder="輸入優惠券"
               />
               <button
                 class="btn btn-outline-primary"
@@ -100,7 +104,7 @@
                 @click="checkCoupon"
                 :disabled="final_total !== total"
               >
-                輸入
+                套用
               </button>
             </div>
             <p v-if="final_total !== total" class="text-danger">已使用優惠券</p>
@@ -146,6 +150,7 @@ export default {
           `${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/cart`,
         )
         .then((res) => {
+          console.log(res.data);
           this.carts = res.data.data.carts;
           this.total = res.data.data.total;
           this.final_total = res.data.data.final_total;
@@ -180,24 +185,33 @@ export default {
         });
     },
     deleteCart(id) {
-      const loader = this.$loading.show();
-      this.$http
-        .delete(
-          `${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/cart/${id}`,
-        )
-        .then((res) => {
-          const { success, message } = res.data;
-          if (success) {
-            this.$swal(message);
-            this.getCart();
-          }
-        })
-        .catch((err) => {
-          console.log(err.message);
-        })
-        .finally(() => {
-          loader.hide();
-        });
+      this.$swal.fire({
+        title: '確定要刪除?',
+        showDenyButton: true,
+        confirmButtonText: '刪除',
+        denyButtonText: '取消',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const loader = this.$loading.show();
+          this.$http
+            .delete(
+              `${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/cart/${id}`,
+            )
+            .then((res) => {
+              const { success, message } = res.data;
+              if (success) {
+                this.$swal(message);
+                this.getCart();
+              }
+            })
+            .catch((err) => {
+              console.log(err.message);
+            })
+            .finally(() => {
+              loader.hide();
+            });
+        }
+      });
     },
     checkCoupon() {
       const loader = this.$loading.show();

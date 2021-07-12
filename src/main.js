@@ -13,7 +13,7 @@ import { required, email, min } from '@vee-validate/rules';
 import { localize, setLocale } from '@vee-validate/i18n';
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
 import card from './views/ProductCard.vue';
-import { currency, date } from './script/util';
+import { currency, date, grindText } from './script/util';
 import App from './App.vue';
 import router from './router';
 
@@ -46,5 +46,6 @@ app.config.globalProperties.emitter = emitter;
 app.config.globalProperties.$filters = {
   currency,
   date,
+  grindText,
 };
 app.mount('#app');

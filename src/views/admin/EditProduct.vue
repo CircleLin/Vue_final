@@ -78,6 +78,11 @@
                   <input id="price" type="number" min="0" class="form-control"
                          placeholder="請輸入售價" v-model.number="tempProduct.price">
                 </div>
+                <div class="form-group col-md-6">
+                  <label for="instock"><span class="text-danger">*</span>庫存</label>
+                  <input id="instock" type="number" min="0" class="form-control"
+                         placeholder="請輸入庫存" v-model.number="tempProduct.instock">
+                </div>
               </div>
               <hr>
 
