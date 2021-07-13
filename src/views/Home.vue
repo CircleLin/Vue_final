@@ -4,7 +4,7 @@
     <div class="icon-scroll"></div>
   </section>
 
-<section class="bg-white pb-6">
+<section class="bg-white pb-5">
 <div class="container my-5">
     <h3 class="text-center mb-0 title">what we give you</h3>
     <div class="short-hr bg-primary mx-auto my-5"></div>
@@ -101,7 +101,7 @@
   </div>
 </section>
 
-  <div class="container-fluid my-5 px-0">
+  <div class="container-fluid px-0">
     <h3 class="text-center mb-0 title">New Release</h3>
     <div class="short-hr bg-primary mx-auto my-5"></div>
     <swiper
@@ -138,15 +138,11 @@
   </swiper>
   </div>
 
-  <div class="container-fluid my-5 px-0">
+  <div class="container-fluid mt-5 px-0">
      <h3 class="text-center mb-0 title">Shop</h3>
-    <div class="short-hr bg-primary mx-auto mt-5 mb-5"></div>
-    <div class="row">
-      <div class="col-md-6 text-center px-6">
-         <img class="img-fluid" src="https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Y29mZmVlJTIwc2hvcHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
-      </div>
-        <div class="col-md-6 d-flex flex-column justify-content-center">
-        <ul class="px-0">
+     <div class="short-hr bg-primary mx-auto mt-5 mb-5"></div>
+     <div class="shop">
+       <ul class="shop-info">
           <li>
             <p class="text-center fw-bold">TEL:(02) 1234-5678</p>
           </li>
@@ -160,9 +156,7 @@
             <p class="text-center fw-bold">circlecoffee@gmail.com</p>
           </li>
         </ul>
-
-      </div>
-    </div>
+     </div>
   </div>
 </template>
 
@@ -288,6 +282,22 @@ li {
   background-color: rgb(255, 255, 255, 0.35);
 }
 
+.shop{
+  background-image: url('../assets/images/shop.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height:55vh;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shop-info{
+  background-color: rgb(255, 255, 255, 0.8);
+  padding:30px;
+  font-size: 1.3rem;
+}
 @media (max-width:768px) {
   .slider-intro{
     width:50%;
