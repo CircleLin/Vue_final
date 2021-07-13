@@ -15,7 +15,7 @@
       </nav>
     </div>
 
-          <ul class="d-flex justify-content-center category ps-0 ">
+          <ul class="d-flex justify-content-center category ps-0 flex-wrap">
             <li>
               <a href="#" class="category-item"
               :class="[activeCategory === '' ? 'active' : '']"
@@ -31,10 +31,10 @@
           </ul>
 
     <div class="row mb-3 justify-content-between">
-      <div class="col-3">
+      <div class="col-6">
         <p class="pb-0">共 {{filterProducts.length}} 樣商品</p>
       </div>
-       <div class="col-3">
+       <div class="col-lg-3 col-6">
             <select name="filter" id="filter" class="form-select text-muted" v-model="sortBy">
               <option value="0">Sort by</option>
               <option value="1">價格：高 -> 低</option>
@@ -45,7 +45,8 @@
 
     <!-- product-list -->
     <div class="row">
-      <div class="col-md-3 mb-4" v-for="product in filterProducts" :key="product.id">
+      <div class="col-md-6 col-lg-4 col-xl-3 mb-4"
+      v-for="product in filterProducts" :key="product.id">
         <card :product="product"></card>
       </div>
     </div>
@@ -82,7 +83,7 @@ a {
 
 .category-item{
   font-size:1.1rem;
-  padding:5px 20px;
+  padding:10px 25px;
   margin:10px;
   position: relative;
   font-weight: bold;
@@ -115,6 +116,12 @@ a {
 
 .menu a:hover {
   font-weight: bold;
+}
+
+@media (max-width:1024px) {
+  .product-banner{
+    height: 40vh;
+  }
 }
 </style>
 

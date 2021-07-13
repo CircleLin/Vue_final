@@ -13,20 +13,20 @@
     <div v-else>
       <div class="row">
         <h5 class="fw-bold mb-5">購物車 Shopping Cart</h5>
-        <div class="col-md-8">
+        <div class="col-lg-8">
           <div
-            class="row border-top border-bottom py-5"
+            class="row border-top border-bottom py-md-5 py-4"
             v-for="(cart, i) in carts"
             :key="cart.id"
           >
-            <div class="col-4">
+            <div class="col-md-4 d-md-block d-none">
               <img
                 class="img-fluid"
                 :src="cart.product.imageUrl"
                 :alt="cart.product.title"
               />
             </div>
-            <div class="col-4">
+            <div class="col-md-4 col-5">
               <div class="row h-100 flex-column justify-content-evenly">
                 <div class="text-center">{{ cart.product.title }}</div>
                 <div class="text-center">{{ cart.product.roast }}</div>
@@ -39,7 +39,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-3 px-4">
+            <div class="col-md-3 col-5 px-md-4">
               <div class="row h-100 flex-column justify-content-center">
                 <div class="input-group mb-3">
                   <button
@@ -74,7 +74,7 @@
                 </h6>
               </div>
             </div>
-            <div class="col-1 d-flex justify-content-center align-items-center">
+            <div class="col-md-1 col-2 d-flex justify-content-center align-items-center">
               <a href="#" @click.prevent="deleteCart(cart.id)">
                 <img
                   src="../assets/icons/bag-x.svg"
@@ -85,9 +85,9 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 border-top">
-          <div class="sticky-top ps-md-4">
-            <h5 class="fw-bold mb-md-4 mt-md-5">購物車總計</h5>
+        <div class="col-lg-4">
+          <div class="sticky-top ps-md-4 mt-3 mt-lg-0">
+            <h5 class="fw-bold mt-3 mt-md-0">購物車總計</h5>
             <h6 class="mb-3">小計：TWD {{ $filters.currency(total) }} 元</h6>
             <div class="input-group mb-3">
               <input

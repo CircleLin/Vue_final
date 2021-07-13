@@ -14,6 +14,7 @@ import { localize, setLocale } from '@vee-validate/i18n';
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
 import card from './views/ProductCard.vue';
 import { currency, date, grindText } from './script/util';
+import 'bootstrap';
 import App from './App.vue';
 import router from './router';
 

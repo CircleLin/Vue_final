@@ -75,6 +75,12 @@ img {
   justify-content: center;
   align-items: center;
 }
+
+@media (max-width:1024px) {
+  .about-banner{
+    height: 40vh;
+  }
+}
 </style>
 
 <script>

@@ -35,7 +35,7 @@
         <h5 class="fw-bold" v-if="product.category !== '咖啡豆'">說明內容：</h5>
         <p class="mb-4">{{product.content}}</p>
         <p class="fw-bold text-danger" v-if="product.instock == 1">僅剩1組</p>
-        <div class="row" v-if="product.instock !== 0">
+        <div class="row gx-1" v-if="product.instock !== 0">
           <div class="col-4">
             <div class="input-group mb-3">
               <button

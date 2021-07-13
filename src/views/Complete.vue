@@ -9,6 +9,6 @@
   <h3 class="fw-bold text-success my-4">付款成功</h3>
   <h5 class="mb-4">訂單已建立，預計1~2天出貨，敬請耐心等候</h5>
   <h5 class="mb-4">謝謝您的購買！</h5>
-  <router-link to="/products" class="btn btn-primary btn-lg w-25">繼續購物</router-link>
+  <router-link to="/products" class="btn btn-primary btn-lg w-50">繼續購物</router-link>
   </div>
 </template>

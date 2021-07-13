@@ -9,22 +9,24 @@
           <table class="table text-center">
             <thead>
               <tr>
-                <th>商品</th>
-                <th>優惠券</th>
+                <th class="d-md-block d-none">商品</th>
                 <th>品名</th>
+                <th>優惠券</th>
                 <th>數量</th>
                 <th class="text-end">售價</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="product in products" :key="product.id">
-                <td>
+                <td  class="d-md-block d-none">
                   <div class="img-container mx-auto">
                     <img :src="product.product.imageUrl" :alt="product.product.title" />
                   </div>
                 </td>
-                <td class="align-middle">{{product.coupon.title}}</td>
                 <td class="align-middle">{{ product.product.title }}</td>
+                <td class="align-middle">
+                  {{product.coupon === undefined ? '' : product.coupon.title}}
+                </td>
                 <td class="align-middle">{{ product.qty }}</td>
                 <td class="align-middle text-end px-0">
                   TWD {{ $filters.currency(product.final_total) }} 元
