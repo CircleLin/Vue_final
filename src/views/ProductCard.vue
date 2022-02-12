@@ -34,7 +34,7 @@
 .p-img > img {
   height: 100%;
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .p-img:hover .p-detail {
