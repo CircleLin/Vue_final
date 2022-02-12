@@ -1,5 +1,6 @@
 <template>
-  <div class="card ">
+<a class="card-link" @click.prevent="goProduct(product.id)">
+  <div class="card shadow-sm">
     <div class="card-body p-0 text-center">
       <a @click.prevent="goProduct(product.id)" class="p-img mb-3">
         <img :src="product.imageUrl" :alt="product.title" />
@@ -22,6 +23,7 @@
       v-else>售完補貨中</button>
     </div>
   </div>
+</a>
 </template>
 
 <style scoped>
@@ -79,6 +81,15 @@ a {
 
 .addCart:hover{
   font-weight: bold;
+}
+
+.card-link {
+  transition: all .2s;
+}
+
+.card-link:hover {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+  transform: scale(1.01);
 }
 </style>
 
