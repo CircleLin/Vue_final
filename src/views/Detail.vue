@@ -77,7 +77,7 @@
       <h5 class="fw-bold">你可能也會喜歡</h5>
    </div>
    <div class="row">
-     <div class="col-md-3" v-for="item in sameProducts" :key="item.id">
+     <div class="col-md-3 mb-4" v-for="item in sameProducts" :key="item.id">
        <card :product="item" @get-product="getProduct"></card>
      </div>
    </div>
