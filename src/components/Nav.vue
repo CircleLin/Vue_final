@@ -36,7 +36,7 @@
             <router-link calss="nav-link" to="/cart">
               <img width="32" height="32" src="../assets/icons/cart-check.svg" alt="cart" />
             </router-link>
-            <div
+            <div v-if="cartCount != 0"
               class="fw-bold cartItem position-absolute bg-danger px-2
             rounded-pill text-white"
             >
