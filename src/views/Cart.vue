@@ -150,7 +150,6 @@ export default {
           `${process.env.VUE_APP_BASEURL}/api/${process.env.VUE_APP_PATH}/cart`,
         )
         .then((res) => {
-          console.log(res.data);
           this.carts = res.data.data.carts;
           this.total = res.data.data.total;
           this.final_total = res.data.data.final_total;
@@ -179,7 +178,9 @@ export default {
             data: cartData,
           },
         )
-        .then(() => {})
+        .then(() => {
+          this.emitter.emit('updateCart');
+        })
         .catch((err) => {
           console.log(err.message);
         });
@@ -201,6 +202,7 @@ export default {
               const { success, message } = res.data;
               if (success) {
                 this.$swal(message);
+                this.emitter.emit('updateCart');
                 this.getCart();
               }
             })
