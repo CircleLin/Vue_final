@@ -162,9 +162,13 @@ export default {
         });
     },
     calcQty(cartId, productId, qty, index, act) {
-      const updateQty = act === 'add' ? qty + 1 : qty - 1;
-      this.carts[index].qty = updateQty;
-      this.updateCart(cartId, productId, updateQty);
+      let updateQty = act === 'add' ? qty + 1 : qty - 1;
+      if (updateQty === 0) {
+        updateQty = 1;
+      } else {
+        this.carts[index].qty = updateQty;
+        this.updateCart(cartId, productId, updateQty);
+      }
     },
     updateCart(id, productId, qty) {
       const cartData = {
