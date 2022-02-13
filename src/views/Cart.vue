@@ -168,6 +168,11 @@ export default {
       } else {
         this.carts[index].qty = updateQty;
         this.updateCart(cartId, productId, updateQty);
+        this.total = 0;
+        this.carts.forEach((item) => {
+          this.total += item.qty * item.product.price;
+        });
+        this.final_total = this.total;
       }
     },
     updateCart(id, productId, qty) {
